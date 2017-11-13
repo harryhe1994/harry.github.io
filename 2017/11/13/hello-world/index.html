@@ -4,15 +4,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Herui</title>
+  <title>Hello World | Herui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Herui">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="http://yoursite.com/2017/11/13/hello-world/index.html">
 <meta property="og:site_name" content="Herui">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="english">
+<meta property="og:updated_time" content="2017-11-09T05:58:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Herui">
+<meta name="twitter:title" content="Hello World">
+<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
   
     <link rel="alternative" href="/atom.xml" title="Herui" type="application/atom+xml">
   
@@ -64,9 +68,7 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/11/13/hello-world/" class="article-date">
   <time datetime="2017-11-13T12:22:03.742Z" itemprop="datePublished">2017-11-13</time>
@@ -79,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/13/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      Hello World
     </h1>
   
 
@@ -113,86 +115,24 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hexo-github-搭建博客系统" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/09/hexo-github-搭建博客系统/" class="article-date">
-  <time datetime="2017-11-09T14:50:44.000Z" itemprop="datePublished">2017-11-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/09/hexo-github-搭建博客系统/">hexo + github 搭建博客系统</a>
-    </h1>
+    <a href="/2017/11/09/hexo-github-搭建博客系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">hexo + github 搭建博客系统</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1><span id="hexo-github快速搭建一个博客系统">Hexo + GitHub快速搭建一个博客系统</span></h1><h2><span id="安装hexo之前需要准备的步骤">安装Hexo之前需要准备的步骤：</span></h2><ol>
-<li>安装git和node（我这里使用的是6的版本）</li>
-</ol>
-<h2><span id="安装hexo">安装hexo</span></h2><ol>
-<li><p>使用npm命令安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装好hexo后，选择一个文件夹初始化好相关文件设置(我本地是新建了一个hexo文件夹)，进入文件夹后右键打开Git bash</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>在安装一些相应的依赖包，同样使用npm安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-ejs --save</span><br><span class="line">npm i hexo-renderer-stylus --save</span><br><span class="line">npm i hexo-renderer-marked --save</span><br><span class="line">npm i hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装完之后，可以通过命令启动服务，查看本地部署是否成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在浏览器中打开本地4000端口查看本地启动结果，如果页面正常显示，表示本地安装成功</p>
-</li>
-</ol>
-<h2><span id="部署到github上">部署到GitHub上</span></h2><ol>
-<li><p>首先需要一个GitHub账号，并创建一个仓库，记住仓库的名字需要特别注意， == 例如：你的账户名为xxxx，则仓库的名称为xxx.gtihub.io == (这里切记要一样)</p>
-</li>
-<li><p>然后配置初始化好的hexo文件夹，修改里面的.yml文件，将其修改为( == 最好使用sublime修改，这里需要注意的是，参数前面需要空两格 ==)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type:  git</span><br><span class="line">  repository:  https://github.com/harryhe1994/harryhe1994.github.io.git</span><br><span class="line">  branch:  master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置好之后就可以将本地项目deploy到GitHub托管了，这里需要注意的是：==我使用的是https进行提交，你也可以配置本地的ssh进行提交，这样就可以不需要输入账号和密码了==。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>成功推送到GitHub之后， == 可以直接访问你的仓库名称（xxx.github.io） == 就可以看到效果了</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2017/11/09/hexo-github-搭建博客系统/" data-id="cj9y5w9hl0001hog6tha0xs0r" class="article-share-link" data-share="baidu" data-title="hexo + github 搭建博客系统">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/11/09/hexo-github-搭建博客系统/#ds-thread" class="article-comment-link">评论</a>
-      
-
-      
-    </footer>
-  </div>
   
 </article>
 
 
-  
-
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/11/13/hello-world/" data-title="Hello World" data-url="http://yoursite.com/2017/11/13/hello-world/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
