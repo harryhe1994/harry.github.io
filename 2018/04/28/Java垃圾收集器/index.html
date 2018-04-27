@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java 垃圾收集器 | Herui</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Serial 收集器单线程收集器，收集垃圾时候必须暂停所有的工作线程，直到它收集结束。 用途：依然是虚拟机运行在客户端模式下的默认新生代收集器 特点：简单高效（与其他收集器的单线程相比），对于限定单个CPU的环境来说，它没有线程交互的开销。    在用户的桌面应用场景中分配给虚拟机管理的内存一般来说不会很大，收集几十兆甚至一两百兆的新生代，停顿的时间完全可以控制在几十毫秒到一百多毫秒以内，只要不平">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 垃圾收集器">
+<meta property="og:url" content="http://yoursite.com/2018/04/28/Java垃圾收集器/index.html">
+<meta property="og:site_name" content="Herui">
+<meta property="og:description" content="Serial 收集器单线程收集器，收集垃圾时候必须暂停所有的工作线程，直到它收集结束。 用途：依然是虚拟机运行在客户端模式下的默认新生代收集器 特点：简单高效（与其他收集器的单线程相比），对于限定单个CPU的环境来说，它没有线程交互的开销。    在用户的桌面应用场景中分配给虚拟机管理的内存一般来说不会很大，收集几十兆甚至一两百兆的新生代，停顿的时间完全可以控制在几十毫秒到一百多毫秒以内，只要不平">
+<meta property="og:locale" content="english">
+<meta property="og:updated_time" content="2018-04-27T18:11:45.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 垃圾收集器">
+<meta name="twitter:description" content="Serial 收集器单线程收集器，收集垃圾时候必须暂停所有的工作线程，直到它收集结束。 用途：依然是虚拟机运行在客户端模式下的默认新生代收集器 特点：简单高效（与其他收集器的单线程相比），对于限定单个CPU的环境来说，它没有线程交互的开销。    在用户的桌面应用场景中分配给虚拟机管理的内存一般来说不会很大，收集几十兆甚至一两百兆的新生代，停顿的时间完全可以控制在几十毫秒到一百多毫秒以内，只要不平">
+  
+    <link rel="alternative" href="/atom.xml" title="Herui" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Herui</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="yoursite.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Java垃圾收集器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/28/Java垃圾收集器/" class="article-date">
+  <time datetime="2018-04-27T18:10:44.000Z" itemprop="datePublished">2018-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 垃圾收集器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="serial-收集器">Serial 收集器</span></h2><p>单线程收集器，收集垃圾时候必须暂停所有的工作线程，直到它收集结束。</p>
+<p>用途：依然是虚拟机运行在客户端模式下的默认新生代收集器</p>
+<p>特点：简单高效（与其他收集器的单线程相比），对于限定单个CPU的环境来说，它没有线程交互的开销。<br>    在用户的桌面应用场景中分配给虚拟机管理的内存一般来说不会很大，收集几十兆甚至一两百兆的新生代，停顿的时间完全可以控制在几十毫秒到一百多毫秒以内，只要不平凡发生，还是可以接受这点停顿的。</p>
+<p>（老年代和新生代也是和内存相关，虚拟机初始化时已经设定了使用的内存大小，并划分为三部分：新生代– 新创建的对象，<br>旧生代 – 经过多次垃圾回收没有被回收的对象或者大对象<br>持久代– JVM使用的内存，包含类信息等）</p>
+<p>==新生代采用的是复制算法，老年代采用的是标记-整理算法==</p>
+<h2><span id="parnew-收集器">ParNew 收集器</span></h2><p>是Serial收集器的多线程版本，除了使用多线程进行收集之外，其余的收集算法、回收策略等都是使用一样的。</p>
+<p>用途：许多运行在server模式下的虚拟机首选的新生代收集器</p>
+<p>特点：除Serial收集器外，目前只有它可以与CMS（第一款真正意义上的并发收集器）收集器配合工作</p>
+<p>局限：在单个CPU中收集效果不一定比Serial好，甚至可能会由于线程间的开销，在超线程技术实现的两个CPU的环境中都不能百分百保证比Serial好。</p>
+<h2><span id="parallel-scavenge-收集器">Parallel Scavenge 收集器</span></h2><p>是一款新生代收集器，使用复制算法并行多线程收集器。</p>
+<p>特点：一般的收集器的关注点是在于尽可能的缩短垃圾回收时用户线程的停顿时间，而它关注的是达到一个可以控制的吞吐量。即CPU用于运行用户代码的时间和CPU总消耗时间的比值（运行用户代码的时间/（运行用户代码的时间 + 垃圾收集的时间））</p>
+<h2><span id="serial-old-收集器">Serial old 收集器</span></h2><p>是Serial的老年代版本</p>
+<p>特点： 单线程，使用的是标记-整理算法</p>
+<p>用途：同样也是使用在client模式下的虚拟机使用， 如果在server模式下，JDK1.5以及之前和Parallel Scavenge收集器搭配使用，另外一种用途就是作为CMS收集器的后备预案，在并发收集器发生并行模式失败时使用。</p>
+<h2><span id="parallel-old-收集器">Parallel Old 收集器</span></h2><p>是Parallel Scavenge收集器的老年版本， 使用的是标记-整理算法</p>
+<p>用途：主要为了配合Parallel Scavenge新生代收集器</p>
+<h2><span id="cmsconcurrent-mark-sweep收集器">CMS（Concurrent Mark Sweep）收集器</span></h2><p>是一种以获得最短回收停顿时间为目标的收集器。目前很大一部分的Java应用集中在互联网站或者B/S系统的服务端，这类应用很重视服务的相应速度。</p>
+<p>是基于标记-清除算法实现的。</p>
+<ol>
+<li>初始标记（需 stop the world）<br> 标记GC Roots能直接关联到的对象</li>
+<li>并发标记<br> 进行GC Roots tracing的过程</li>
+<li>重新标记（需 stop the world）<br> 修正并发标记期间因用户程序继续运作而导致标记产生变动的部分对象的标记记录</li>
+<li>并发清除</li>
+</ol>
+<p>局限：对CPU资源敏感、无法处理浮动垃圾、由于基于标记-清除算法，会产生大量的空间碎片，会对大对象的分配带来麻烦。</p>
+<h2><span id="g1-收集器">G1 收集器</span></h2>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2018/04/28/Java垃圾收集器/" data-id="cjgi9xp4t0000mwg6ubyayoyf" class="article-share-link" data-share="baidu" data-title="Java 垃圾收集器">Share</a>
+      
+
+      
+        <a href="http://yoursite.com/2018/04/28/Java垃圾收集器/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/28/weak-reference/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Weak Reference For Java</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2018/04/28/Java垃圾收集器/" data-title="Java 垃圾收集器" data-url="http://yoursite.com/2018/04/28/Java垃圾收集器/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/28/Java垃圾收集器/">Java 垃圾收集器</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/28/weak-reference/">Weak Reference For Java</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/hexo-github-搭建博客系统/">hexo + github 搭建博客系统</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://arvinxiang.com" target="_blank">主题作者</a>
+          </li>
+        
+          <li>
+            <a href="http://reqianduan.com" target="_blank">热前端</a>
+          </li>
+        
+          <li>
+            <a href="http://yuancheng.work" target="_blank">远程.work</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Harry He<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"reqianduan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>
