@@ -4,15 +4,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Herui</title>
+  <title>链表 | Herui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Herui">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="一、单链表说到链表，我们可以结合数组的一些特性进行分析。数组和链表都有各自的特性，下面我们就先从数组的一些局限性进行分析。 数组基本的数组操作我就不再讲了，我们可以定义一个大小为5的数组a，然后初始化一些数据a[0]=1，a[1]=2，a[2]=3，如图。  现在想要在数组的第三个位置插入一个数，这时数组执行的操作将a[2]的数据拿出，然后再插入到a[3],最后将数据插入a[2]。  如果插入数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表">
+<meta property="og:url" content="http://yoursite.com/2018/04/28/链表/index.html">
 <meta property="og:site_name" content="Herui">
+<meta property="og:description" content="一、单链表说到链表，我们可以结合数组的一些特性进行分析。数组和链表都有各自的特性，下面我们就先从数组的一些局限性进行分析。 数组基本的数组操作我就不再讲了，我们可以定义一个大小为5的数组a，然后初始化一些数据a[0]=1，a[1]=2，a[2]=3，如图。  现在想要在数组的第三个位置插入一个数，这时数组执行的操作将a[2]的数据拿出，然后再插入到a[3],最后将数据插入a[2]。  如果插入数据">
 <meta property="og:locale" content="english">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/array.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/array2.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/link1.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/link2.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/link3.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/colection.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/dequeue1.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/dequeue2.png?raw=true">
+<meta property="og:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/dequeue3.png?raw=true">
+<meta property="og:updated_time" content="2018-04-27T18:16:24.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Herui">
+<meta name="twitter:title" content="链表">
+<meta name="twitter:description" content="一、单链表说到链表，我们可以结合数组的一些特性进行分析。数组和链表都有各自的特性，下面我们就先从数组的一些局限性进行分析。 数组基本的数组操作我就不再讲了，我们可以定义一个大小为5的数组a，然后初始化一些数据a[0]=1，a[1]=2，a[2]=3，如图。  现在想要在数组的第三个位置插入一个数，这时数组执行的操作将a[2]的数据拿出，然后再插入到a[3],最后将数据插入a[2]。  如果插入数据">
+<meta name="twitter:image" content="https://github.com/harryhe1994/imagemakdown/blob/master/image/array.png?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Herui" type="application/atom+xml">
   
@@ -64,130 +78,7 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-    <article id="post-Java垃圾收集器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/28/Java垃圾收集器/" class="article-date">
-  <time datetime="2018-04-27T18:10:44.000Z" itemprop="datePublished">2018-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/28/Java垃圾收集器/">Java 垃圾收集器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="serial-收集器">Serial 收集器</span></h2><p>单线程收集器，收集垃圾时候必须暂停所有的工作线程，直到它收集结束。</p>
-<p>用途：依然是虚拟机运行在客户端模式下的默认新生代收集器</p>
-<p>特点：简单高效（与其他收集器的单线程相比），对于限定单个CPU的环境来说，它没有线程交互的开销。<br>    在用户的桌面应用场景中分配给虚拟机管理的内存一般来说不会很大，收集几十兆甚至一两百兆的新生代，停顿的时间完全可以控制在几十毫秒到一百多毫秒以内，只要不平凡发生，还是可以接受这点停顿的。</p>
-<p>（老年代和新生代也是和内存相关，虚拟机初始化时已经设定了使用的内存大小，并划分为三部分：新生代– 新创建的对象，<br>旧生代 – 经过多次垃圾回收没有被回收的对象或者大对象<br>持久代– JVM使用的内存，包含类信息等）</p>
-<p>==新生代采用的是复制算法，老年代采用的是标记-整理算法==</p>
-<h2><span id="parnew-收集器">ParNew 收集器</span></h2><p>是Serial收集器的多线程版本，除了使用多线程进行收集之外，其余的收集算法、回收策略等都是使用一样的。</p>
-<p>用途：许多运行在server模式下的虚拟机首选的新生代收集器</p>
-<p>特点：除Serial收集器外，目前只有它可以与CMS（第一款真正意义上的并发收集器）收集器配合工作</p>
-<p>局限：在单个CPU中收集效果不一定比Serial好，甚至可能会由于线程间的开销，在超线程技术实现的两个CPU的环境中都不能百分百保证比Serial好。</p>
-<h2><span id="parallel-scavenge-收集器">Parallel Scavenge 收集器</span></h2><p>是一款新生代收集器，使用复制算法并行多线程收集器。</p>
-<p>特点：一般的收集器的关注点是在于尽可能的缩短垃圾回收时用户线程的停顿时间，而它关注的是达到一个可以控制的吞吐量。即CPU用于运行用户代码的时间和CPU总消耗时间的比值（运行用户代码的时间/（运行用户代码的时间 + 垃圾收集的时间））</p>
-<h2><span id="serial-old-收集器">Serial old 收集器</span></h2><p>是Serial的老年代版本</p>
-<p>特点： 单线程，使用的是标记-整理算法</p>
-<p>用途：同样也是使用在client模式下的虚拟机使用， 如果在server模式下，JDK1.5以及之前和Parallel Scavenge收集器搭配使用，另外一种用途就是作为CMS收集器的后备预案，在并发收集器发生并行模式失败时使用。</p>
-<h2><span id="parallel-old-收集器">Parallel Old 收集器</span></h2><p>是Parallel Scavenge收集器的老年版本， 使用的是标记-整理算法</p>
-<p>用途：主要为了配合Parallel Scavenge新生代收集器</p>
-<h2><span id="cmsconcurrent-mark-sweep收集器">CMS（Concurrent Mark Sweep）收集器</span></h2><p>是一种以获得最短回收停顿时间为目标的收集器。目前很大一部分的Java应用集中在互联网站或者B/S系统的服务端，这类应用很重视服务的相应速度。</p>
-<p>是基于标记-清除算法实现的。</p>
-<ol>
-<li>初始标记（需 stop the world）<br> 标记GC Roots能直接关联到的对象</li>
-<li>并发标记<br> 进行GC Roots tracing的过程</li>
-<li>重新标记（需 stop the world）<br> 修正并发标记期间因用户程序继续运作而导致标记产生变动的部分对象的标记记录</li>
-<li>并发清除</li>
-</ol>
-<p>局限：对CPU资源敏感、无法处理浮动垃圾、由于基于标记-清除算法，会产生大量的空间碎片，会对大对象的分配带来麻烦。</p>
-<h2><span id="g1-收集器">G1 收集器</span></h2>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2018/04/28/Java垃圾收集器/" data-id="cjgia481300007gg6pd68zof2" class="article-share-link" data-share="baidu" data-title="Java 垃圾收集器">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2018/04/28/Java垃圾收集器/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-weak-reference" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/28/weak-reference/" class="article-date">
-  <time datetime="2018-04-27T18:10:44.000Z" itemprop="datePublished">2018-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/28/weak-reference/">Weak Reference For Java</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在Java里, 当一个对象o被创建时, 它被放在Heap里. 当GC运行的时候, 如果发现没有任何引用指向o, o就会被回收以腾出内存空间. 或者换句话说, 一个对象被回收, 必须满足两个条件: ==1)没有任何引用指向它 2)GC被运行==.<br>在现实情况写代码的时候, 我们往往通过把所有指向某个对象的==referece置空==来保证这个对象在下次GC运行的时候被回收 (可以用java -verbose:gc来观察gc的行为)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object c = new Car();</span><br><span class="line">c=null;</span><br></pre></td></tr></table></figure></p>
-<p> 对于简单的情况, 手动置空是不需要程序员来做的, 因为在java中, 对于简单对象, 当调用它的方法执行完毕后, 指向它的引用会被从stack中popup, 所以他就能在下一次GC执行时被回收了.</p>
-<p> 但是也有例外，当使用==cache==的时候, 由于cache的对象正是程序运行需要的, 那么只要程序正在运行, cache中的引用就不会被GC给(或者说, cache中的reference拥有了和主程序一样的life cycle). 那么随着cache中的reference越来越多, GC无法回收的object也越来越多, 无法被自动回收. 当这些object需要被回收时, 回收这些object的任务只有交给程序编写者了. 然而这却违背了GC的本质(自动回收可以回收的objects).</p>
-<p>==所以就引入了weak reference==<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object c = <span class="keyword">new</span> Car(); <span class="comment">//只要c还指向car object, car object就不会被回收</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WeakReference&lt;Car&gt; weakCar = new WeakReference(Car)(car);</span><br></pre></td></tr></table></figure>
-<p>当要获得weak reference引用的object时, 首先需要判断它是否已经被回收: ==weakCar.get();==</p>
-<p>例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> price;</span><br><span class="line">	<span class="keyword">private</span> String colour;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">(<span class="keyword">double</span> price, String colour)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.price = price;</span><br><span class="line">		<span class="keyword">this</span>.colour = colour;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> price;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrice</span><span class="params">(<span class="keyword">double</span> price)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getColour</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> colour;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColour</span><span class="params">(String colour)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.colour = colour;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> colour +<span class="string">"car costs $"</span>+price;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.ref.WeakReference;</span><br><span class="line"></span><br><span class="line">public class TestWeakReference &#123;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		Car car = new Car(22000,&quot;silver&quot;);</span><br><span class="line">		WeakReference&lt;Car&gt; weakCar = new WeakReference&lt;Car&gt;(car);</span><br><span class="line">		int i=0;</span><br><span class="line">		while(true)&#123;</span><br><span class="line">			if(weakCar.get()!=null)&#123;</span><br><span class="line">				i++;</span><br><span class="line">				System.out.println(&quot;Object is alive for &quot;+i+&quot; loops - &quot;+weakCar);</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				System.out.println(&quot;Object has been collected.&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序运行一段时间后, 程序打印出”==Object has been collected==.” 说明, weak reference指向的对象的被回收了.</p>
-<p> WeakReference的一个特点==是它何时被回收是不可确定的, 因为这是由GC运行的不确定性所确定的==. 所以, 一般用weak reference引用的对象是有价值被cache, 而且很容易被重新被构建, 且很消耗内存的对象.</p>
-<h3><span id="referencequeue">ReferenceQueue</span></h3><p>在weak reference指向的对象被回收后, weak reference本身其实也就没有用了. java提供了一个ReferenceQueue来保存这些所指向的对象已经被回收的reference. 用法是在定义WeakReference的时候将一个ReferenceQueue的对象作为参数传入构造函数.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Reference(T referent, ReferenceQueue&lt;? super T&gt; queue) &#123;</span><br><span class="line">       this.referent = referent;</span><br><span class="line">       this.queue = (queue == null) ? ReferenceQueue.NULL : queue;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2018/04/28/weak-reference/" data-id="cjgia481l00037gg6c94lqy2p" class="article-share-link" data-share="baidu" data-title="Weak Reference For Java">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2018/04/28/weak-reference/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-链表" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-链表" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/28/链表/" class="article-date">
   <time datetime="2018-04-27T18:10:44.000Z" itemprop="datePublished">2018-04-28</time>
@@ -200,8 +91,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/28/链表/">链表</a>
+    <h1 class="article-title" itemprop="name">
+      链表
     </h1>
   
 
@@ -266,137 +157,33 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/13/hello-world/" class="article-date">
-  <time datetime="2017-11-13T12:22:03.742Z" itemprop="datePublished">2017-11-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2018/04/28/weak-reference/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2><span id="quick-start">Quick Start</span></h2><h3><span id="create-a-new-post">Create a new post</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3><span id="run-server">Run server</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3><span id="generate-static-files">Generate static files</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3><span id="deploy-to-remote-sites">Deploy to remote sites</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2017/11/13/hello-world/" data-id="cjgia481300017gg6uiwkg31c" class="article-share-link" data-share="baidu" data-title="Hello World">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/11/13/hello-world/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo-github-搭建博客系统" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/09/hexo-github-搭建博客系统/" class="article-date">
-  <time datetime="2017-11-09T14:50:44.000Z" itemprop="datePublished">2017-11-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          Weak Reference For Java
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/09/hexo-github-搭建博客系统/">hexo + github 搭建博客系统</a>
-    </h1>
   
+    <a href="/2017/11/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1><span id="hexo-github快速搭建一个博客系统">Hexo + GitHub快速搭建一个博客系统</span></h1><h2><span id="安装hexo之前需要准备的步骤">安装Hexo之前需要准备的步骤：</span></h2><ol>
-<li>安装git和node（我这里使用的是6的版本）</li>
-</ol>
-<h2><span id="安装hexo">安装hexo</span></h2><ol>
-<li><p>使用npm命令安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装好hexo后，选择一个文件夹初始化好相关文件设置(我本地是新建了一个hexo文件夹)，进入文件夹后右键打开Git bash</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>在安装一些相应的依赖包，同样使用npm安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-ejs --save</span><br><span class="line">npm i hexo-renderer-stylus --save</span><br><span class="line">npm i hexo-renderer-marked --save</span><br><span class="line">npm i hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装完之后，可以通过命令启动服务，查看本地部署是否成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在浏览器中打开本地4000端口查看本地启动结果，如果页面正常显示，表示本地安装成功</p>
-</li>
-</ol>
-<h2><span id="部署到github上">部署到GitHub上</span></h2><ol>
-<li><p>首先需要一个GitHub账号，并创建一个仓库，记住仓库的名字需要特别注意， == 例如：你的账户名为xxxx，则仓库的名称为xxx.gtihub.io == (这里切记要一样)</p>
-</li>
-<li><p>然后配置初始化好的hexo文件夹，修改里面的.yml文件，将其修改为( == 最好使用sublime修改，这里需要注意的是，参数前面需要空两格 ==)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type:  git</span><br><span class="line">  repository:  https://github.com/harryhe1994/harryhe1994.github.io.git</span><br><span class="line">  branch:  master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置好之后就可以将本地项目deploy到GitHub托管了，这里需要注意的是：==我使用的是https进行提交，你也可以配置本地的ssh进行提交，这样就可以不需要输入账号和密码了==。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>成功推送到GitHub之后， == 可以直接访问你的仓库名称（xxx.github.io） == 就可以看到效果了</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2017/11/09/hexo-github-搭建博客系统/" data-id="cjgia481300027gg6fb60uzk1" class="article-share-link" data-share="baidu" data-title="hexo + github 搭建博客系统">Share</a>
-      
-
-      
-        <a href="http://yoursite.com/2017/11/09/hexo-github-搭建博客系统/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-    </footer>
-  </div>
   
 </article>
 
 
-  
-
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2018/04/28/链表/" data-title="链表" data-url="http://yoursite.com/2018/04/28/链表/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
